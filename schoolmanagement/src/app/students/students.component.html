@@ -1,0 +1,22 @@
+<div class="form-inline">
+  <input class="form-control" style="margin: 3px 3px;" type="text" placeholder="Add course" #inpStudent>
+   <button class="btn btn-primary" (click)='addStudent(inpStudent.value)'>Add</button> 
+
+
+
+
+</div>
+
+<ul class="list-group" style="padding-top: 10px">
+<li class="list-group-item" *ngFor='let item of students'>{{item.name}}
+  <button class="btn btn-primary" (click)="EnrollInBatch(item.id)">Enroll into Batch</button>
+</li>
+</ul>
+
+<div *ngIf="enrollCliced">
+<label for="courseSelect"> Select Batch: </label>
+<select   [(ngModel)]="selectedValue" >
+  <option *ngFor="let batch of batches" [ngValue]="batch.id">{{batch.name}}</option>
+</select>
+<button (click)="doneEnrollment(selectedValue)">Ok</button>
+</div>

@@ -1,0 +1,11 @@
+<div class="form-inline">
+  <input class="form-control" style="margin: 3px 3px;" type="text" placeholder="Add Subject" #inpSubject><br/>
+      <label for="courseSelect"> Course select: </label>
+      <select name="courseSelect" id="courseSelect"  [(ngModel)]="selectedValue">
+        <option *ngFor="let course of courses" [ngValue]="course.id">{{course.name}}</option>
+      </select>
+   <button class="btn btn-primary" (click)='addSubject(inpSubject.value)'>Add</button> 
+</div>
+<ul class="list-group" style="padding-top: 10px">
+<li class="list-group-item" *ngFor='let item of subjects'>{{item.name}}</li>
+</ul>

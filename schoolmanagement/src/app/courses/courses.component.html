@@ -1,0 +1,69 @@
+<style>
+  .linkbtn{
+    padding: 0;
+border: none;
+background: none;
+  }
+  .linkbtn :focus{
+   outline: none;
+  }
+</style>
+<div class="form-inline">
+  <input class="form-control" style="margin: 3px 3px;" type="text" placeholder="Add course" #inpCourse>
+   <button class="btn btn-primary" (click)='addCourse(inpCourse.value)'>Add</button> 
+</div>
+<ul class="list-group" style="padding-top: 10px">
+    <li class="list-group-item" *ngFor='let item of courses'><button class="linkbtn" (click)="showBatches(item.id)">{{item.name}}</button></li>
+    <div class="container">
+    <div *ngIf=(showBatchesClicked)>
+     <h2>Related Batches For Selected Course are:</h2>
+     
+     <ul class="list-group">
+       <li *ngFor='let item of batches' class="list-group-item list-group-item-info">
+          <button class="linkbtn" (click)="showLectureAndBatcheStudent(item.CourseId,item.id)">{{item.name}}</button>
+       </li>
+       </ul>
+       <div class="form-inline">
+          <input class="form-control" style="margin: 3px 3px;" type="text" placeholder="Add Batch" #inpBatch>
+          <label for="courseSelect"> Course select: </label>
+          <select name="courseSelect" id="courseSelect"  [(ngModel)]="selectedValue">
+            <option *ngFor="let course of courses" [ngValue]="course.id">
+              {{course.name}}</option>
+          </select> 
+          <button class="btn btn-primary" (click)='addBatch(inpBatch.value)'>Add</button> 
+        </div>
+        <div class="container" *ngIf="showLectureAndBatchedClicked">
+          <div class="row">
+              <div class="col-sm-6" style="background-color:lightgoldenrodyellow">
+                <h3>Lectures Corresponding to Selected Batch</h3>
+
+                <ul class="list-group">
+                    <li *ngFor='let item of lectures' class="list-group-item list-group-item-info">
+                       {{item.name}}
+                    </li>
+                    </ul>
+          </div>
+          <div class="col-sm-6" style="background-color:lightpink">
+              <h3>Students Corresponding to Selected Batch</h3>
+              <ul class="list-group">
+                  <li *ngFor='let item of students' class="list-group-item list-group-item-info">
+                     {{item.name}}
+                  </li>
+                  </ul>
+                  <div class="form-inline">
+                      <input class="form-control" style="margin: 3px 3px;" type="text" placeholder="Add course" #inpStudent>
+                       <button class="btn btn-primary" (click)='addStudent(inpStudent.value)'>Add</button> 
+                    
+                             
+                  
+                    </div>
+                    
+
+
+
+          </div>
+          
+        </div>
+</div>
+   </div>
+  
